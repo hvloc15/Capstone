@@ -5,7 +5,7 @@ from .models import Image
 class ImageSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
-        image = data.get("image", None)
+        image = data.get("image")
 
         if image is None:
             return serializers.ValidationError(
