@@ -12,7 +12,8 @@ class OCR(APIView):
     def post(self, request):
         file_serializer = ImageSerializer(data=request.data)
         if file_serializer.is_valid():
-            image = read_opencv_image(file_serializer.validated_data.get("image"))
-            return Response("OK", status=status.HTTP_201_CREATED)
+            file_serializer.save()
+            #image = read_opencv_image(file_serializer.validated_data.get("image"))
+            return Response( "Success", status=status.HTTP_201_CREATED)
         else:
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

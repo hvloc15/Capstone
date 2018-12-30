@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Image
+from .models import Image, Book
 
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -22,6 +22,13 @@ class ImageSerializer(serializers.ModelSerializer):
 
         return data
 
-    class Meta():
+    class Meta:
         model = Image
         fields = ('image',)
+
+
+class BookSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Book
+        fields = ('name',)
