@@ -3,3 +3,4 @@ djangorestframework==3.9.0
 Pillow
 pytesseract
 numpy
+opencv-python
