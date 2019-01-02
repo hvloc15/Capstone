@@ -18,3 +18,7 @@ class OCR(APIView):
         image = read_opencv_image(file_serializer.validated_data.get("image"))
         text = pytesseract.image_to_string(image)
         return Response({"message":text}, status=status.HTTP_200_OK)
+
+    def get(self, request):
+        return Response({"message":"OK"}, status=status.HTTP_200_OK)
+
