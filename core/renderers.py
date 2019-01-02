@@ -1,14 +1,13 @@
 import json
-
 from rest_framework.renderers import JSONRenderer
-from rest_framework import serializers
 
 
 class ConduitJSONRenderer(JSONRenderer):
     charset = 'utf-8'
-    object_label = 'object'
+    object_label = 'message'
     pagination_object_label = 'objects'
     pagination_object_count = 'count'
+    status_code = "status"
 
     def render(self, data, media_type=None, renderer_context=None):
         if data.get('results', None) is not None:
@@ -23,8 +22,13 @@ class ConduitJSONRenderer(JSONRenderer):
         # check for this case.
         elif data.get('errors', None) is not None:
             return super(ConduitJSONRenderer, self).render(data)
-
+        elif data.get("status") is not None:
+            return json.dumps({
+                self.status_code: data["status"],
+                self.object_label: data["message"],
+            })
         else:
             return json.dumps({
-                self.object_label: data
+                self.status_code: 200,
+                self.object_label: data["message"],
             })
