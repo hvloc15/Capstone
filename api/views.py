@@ -6,7 +6,7 @@ from rest_framework import status
 from algorithms.utils import read_opencv_image
 from api.renderer import ApiJSONRenderer
 import pytesseract
-from django.conf import settings
+
 
 class OCR(APIView):
     parser_classes = (MultiPartParser, FormParser)
@@ -16,8 +16,8 @@ class OCR(APIView):
         file_serializer = ImageSerializer(data=request.data)
         file_serializer.is_valid(raise_exception=True)
         image = read_opencv_image(file_serializer.validated_data.get("image"))
-        text = pytesseract.image_to_string(image, lang="vie")
-        return Response({"message":text}, status=status.HTTP_200_OK)
+        text = pytesseract.image_to_string(image)
+        return Response({"message": text}, status=status.HTTP_200_OK)
 
     def get(self, request):
         return Response({"message":"OK"}, status=status.HTTP_200_OK)
@@ -34,5 +34,5 @@ class UploadImage(APIView):
         return Response({"message":file_serializer.data}, status=status.HTTP_200_OK)
 
     def get(self, request):
-        return Response({"message":"OK"}, status=status.HTTP_200_OK)
+        return Response({"message": "OK"}, status=status.HTTP_200_OK)
 
