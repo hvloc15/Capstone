@@ -4,3 +4,5 @@ Pillow
 pytesseract
 numpy
 opencv-python
+django-rest-swagger
+coreapi pyyaml
