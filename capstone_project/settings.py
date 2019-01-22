@@ -26,6 +26,7 @@ SECRET_KEY = '6bt$%v(mh_x@y-@1)(0h(z3ve&50!hus!y-tlf9t1#f@$+2yqf'
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+#USE_X_FORWARDED_HOST = True
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -128,7 +129,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATIC_URL = '/static/'
-STATIC_ROOT= os.path.join(BASE_DIR, "static")
+STATIC_ROOT= '/home/osboxes/Capstone/static'
 
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'core.exceptions.core_exception_handler',
